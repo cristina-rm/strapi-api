@@ -1,4 +1,4 @@
-module.exports = ({ env }) => ({
+/*module.exports = ({ env }) => ({
   connection: {
     client: 'postgres',
     connection: {
@@ -10,6 +10,28 @@ module.exports = ({ env }) => ({
       schema: env('DATABASE_SCHEMA', 'public'), // Not required
       ssl: {
         ca: env('DATABASE_CA')
+      },
+    },
+    debug: false,
+  },
+});*/
+
+const parse = require("pg-connection-string").parse;
+const { host, port, database, user, password } = parse(
+  process.env.DATABASE_URL
+);
+
+module.exports = () => ({
+  connection: {
+    client: "postgres",
+    connection: {
+      host,
+      port,
+      database,
+      user,
+      password,
+      ssl: {
+        rejectUnauthorized: false,
       },
     },
     debug: false,
