@@ -20,7 +20,9 @@
       "type": "richtext"
     },
     "slug": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "user": {
       "type": "relation",
